@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySphere | Smart Student Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <a href="#" class="brand">Study<span>Sphere</span><b>✦</b></a>
+
+        <p class="nav-label">WORKSPACE</p>
+        <a href="#dashboard" class="nav-link active">⌂ Dashboard</a>
+        <a href="#tasks" class="nav-link">☑ My Tasks</a>
+        <a href="#focus" class="nav-link">◷ Focus Timer</a>
+        <a href="#goals" class="nav-link">✧ Daily Goals</a>
+
+        <div class="sidebar-bottom">
+            <div class="quote-card">
+                <span>✦ DAILY REMINDER</span>
+                <p>Small steps every day lead to big results.</p>
+            </div>
+            <p class="sidebar-footer">Made for your next big goal ✨</p>
+        </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+
+        <header class="topbar">
+            <div>
+                <p class="muted small">YOUR PERSONAL STUDY SPACE</p>
+                <h1>Hey, Student! <span>👋</span></h1>
+                <p class="muted">Make today count. One task at a time.</p>
+            </div>
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">☼</button>
+        </header>
+
+        <section class="welcome-card">
+            <div>
+                <p class="welcome-label">YOUR JOURNEY STARTS HERE</p>
+                <h2>Learn something.<br>Achieve something.</h2>
+                <p>Stay focused, organize your studies and celebrate your progress.</p>
+                <a href="#tasks" class="light-btn">Plan My Day ↗</a>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="book-icon">📚</div>
+                <span class="star star-one">✦</span>
+                <span class="star star-two">✧</span>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-icon purple">☑</div>
+                <p>Tasks Completed</p>
+                <h2 id="completedStat">0</h2>
+                <span class="muted small">Keep going!</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon blue">▤</div>
+                <p>Total Tasks</p>
+                <h2 id="totalStat">0</h2>
+                <span class="muted small">Your study checklist</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon pink">◷</div>
+                <p>Focus Sessions</p>
+                <h2 id="sessionStat">0</h2>
+                <span class="muted small">Sessions completed</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon yellow">✧</div>
+                <p>Completion Rate</p>
+                <h2 id="rateStat">0%</h2>
+                <span class="muted small">Progress so far</span>
+            </article>
+        </section>
+
+        <div class="content-grid">
+
+            <section class="panel tasks-panel" id="tasks">
+                <div class="panel-heading">
+                    <div>
+                        <h2>My Tasks</h2>
+                        <p class="muted small">Turn your plans into progress.</p>
+                    </div>
+                    <span class="count-badge" id="taskCount">0 tasks</span>
+                </div>
+
+                <form id="taskForm" class="task-form">
+                    <input type="text" id="taskInput"
+                        placeholder="What do you need to study?" maxlength="100" required>
+
+                    <select id="taskCategory" aria-label="Task category">
+                        <option value="Study">Study</option>
+                        <option value="Assignment">Assignment</option>
+                        <option value="Revision">Revision</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+
+                    <button type="submit" class="add-btn">+ Add</button>
+                </form>
+
+                <div class="filter-row">
+                    <button class="filter-btn selected" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+
+                <div id="taskList" class="task-list"></div>
+                <p id="emptyMessage" class="empty-message">
+                    No tasks here yet. Add your first task above ✨
+                </p>
+            </section>
+
+            <section class="panel focus-panel" id="focus">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Focus Room</h2>
+                        <p class="muted small">Your time, your progress.</p>
+                    </div>
+                    <span class="focus-icon">◷</span>
+                </div>
+
+                <div class="timer-wrap">
+                    <svg class="timer-svg" viewBox="0 0 220 220">
+                        <circle class="timer-track" cx="110" cy="110" r="94"/>
+                        <circle id="timerProgress" class="timer-progress"
+                            cx="110" cy="110" r="94"/>
+                    </svg>
+                    <div class="timer-center">
+                        <span id="timerMode">FOCUS TIME</span>
+                        <strong id="timerDisplay">25:00</strong>
+                        <span id="timerCaption">Ready when you are</span>
+                    </div>
+                </div>
+
+                <div class="timer-presets">
+                    <button class="preset-btn active" data-minutes="25">25 min</button>
+                    <button class="preset-btn" data-minutes="15">15 min</button>
+                    <button class="preset-btn" data-minutes="5">5 min</button>
+                </div>
+
+                <div class="timer-actions">
+                    <button id="startTimer" class="start-btn">▶ Start Focus</button>
+                    <button id="resetTimer" class="reset-btn">↻</button>
+                </div>
+                <p class="timer-note">Put your phone aside. You've got this!</p>
+            </section>
+
+        </div>
+
+        <section class="panel goals-panel" id="goals">
+            <div class="panel-heading">
+                <div>
+                    <h2>Today's Progress</h2>
+                    <p class="muted small">Every completed task brings you closer.</p>
+                </div>
+                <span id="progressLabel" class="progress-label">0% completed</span>
+            </div>
+
+            <div class="progress-track">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="progress-bottom">
+                <span id="progressDetail">0 of 0 tasks completed</span>
+                <span>Keep moving forward ✨</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>StudySphere ✦ Built with HTML, CSS & JavaScript</p>
+            <p>One step at a time. One goal at a time.</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
